@@ -34,18 +34,18 @@ int main() {
   std::cin >> number;
 
   if (number[0]=='-' || number[0] - '0' >= 0 && number[0] - '0' <= 9 || number[0]=='.') {
-	int minus = 0, dot = 0, num = 0;
+	bool minus = false, dot = false, num = false;
 	for (int i = 0; i < number.length(); i++) {
-	  if (number[i] - '0' >= 0 && number[i] - '0' < 10) num++;
-	  else if (number[i]=='-' && minus < 1) minus++;
-	  else if (number[i]=='.' && dot < 1) dot++;
+	  if (number[i] - '0' >= 0 && number[i] - '0' < 10) num=true;
+	  else if (number[i]=='-' && minus < 1) minus=true;
+	  else if (number[i]=='.' && dot < 1) dot=true;
 	  else {
 		std::cout << "No!";
 		break;
 	  }
-	  if (i==(number.length() - 1) && num > 0) {
+	  if (i==(number.length() - 1) && num == true) {
 		std::cout << "Yes!";
-	  } else if (i==(number.length() - 1) && num == 0){
+	  } else if (i==(number.length() - 1) && num == false){
 		std::cout << "No!";
 	  }
 	}
