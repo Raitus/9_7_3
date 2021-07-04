@@ -32,26 +32,20 @@ int main() {
   std::string number;
   std::cout << "Input string of numbers: ";
   std::cin >> number;
-
+  bool num = false, denialCheck = false;
   if (number[0]=='-' || (number[0] - '0' >= 0 && number[0] - '0' <= 9) || number[0]=='.') {
-	bool minus = false, dot = false, num = false;
+	bool dot = false;
 	for (int i = 0; i < number.length(); i++) {
-	  if (number[i] - '0' >= 0 && number[i] - '0' < 10) num=true;
-	  else if (number[0]=='-' && minus == false) minus=true;
-	  else if (number[i]=='-'){
-		std::cout << "No!";
-		break;
-	  }
-	  else if (number[i]=='.' && dot == false) dot=true;
+	  if (number[i] - '0' >= 0 && number[i] - '0' < 10) num = true;
+	  else if (number[0]=='-'){}
+	  else if (number[i]=='.' && !dot) dot = true;
 	  else {
 		std::cout << "No!";
+		denialCheck=true;
 		break;
 	  }
-	  if (i==(number.length() - 1)){
-		if (num) std::cout << "Yes!";
-		else std::cout << "No!";
-	  }
 	}
+	if (!denialCheck&&num) std::cout << "Yes!";
   } else {
 	std::cout << "No!";
   }
